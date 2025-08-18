@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  express_starter:
+    container_name: express_starter
+    image: itbeeazy/express-starter:latest
+    restart: always
+    environment:
+      - PORT=3030
+    expose:
+      - 3030
+    ports:
+      - 3030:3030
+    networks:
+      - express_nw
+
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 express_starter
+
+networks:
+  express_nw:
+    driver: bridge
