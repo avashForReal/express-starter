@@ -25,4 +25,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: itbeeazy/express-starter:latest
+          tags: lecton-afk/express-starter:latest
